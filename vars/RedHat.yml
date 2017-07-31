@@ -1,5 +1,5 @@
 ---
-clamav_daemon_localsocket_path: /var/run/clamd.scan/clamd.sock
+clamav_daemon_localsocket: /var/run/clamd.scan/clamd.sock
 clamav_daemon_config_path: /etc/clamd.d/scan.conf
 __clamav_daemon: 'clamd@scan'
 __clamav_packages:

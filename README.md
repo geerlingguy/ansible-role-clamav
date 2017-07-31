@@ -23,7 +23,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 Run `freshclam` to update scanning definitions when the playbook is run. Note that this will always be run at least once after `clamav_packages` installs new packages.
 
-    clamav_daemon_localsocket_path: /var/run/clamav/clamd.ctl
+    clamav_daemon_localsocket: /var/run/clamav/clamd.ctl
     clamav_daemon_config_path: /etc/clamav/clamd.conf
 
 Path configuration for ClamAV daemon. These are hardcoded specifically for each OS family (Debian and Red Hat) and cannot be overidden.
@@ -32,7 +32,7 @@ Path configuration for ClamAV daemon. These are hardcoded specifically for each 
       - regexp: '^.*Example$'
         state: absent
       - regexp: '^.*LocalSocket .*$'
-        line: 'LocalSocket {{ clamav_local_socket_path }}'
+        line: 'LocalSocket {{ clamav_daemon_localsocket }}'
 
 Changes to make to the configuration file that is read from when ClamAV starts. You need to at least comment the 'Example' line and open a LocalSocket (or `TCPSocket`, e.g. `3310` by default) to get the ClamAV daemon to run.
 

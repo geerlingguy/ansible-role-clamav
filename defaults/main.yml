@@ -7,7 +7,7 @@ clamav_daemon_configuration_changes:
   - regexp: '^.*Example$'
     state: absent
   - regexp: '^.*LocalSocket .*$'
-    line: 'LocalSocket {{ clamav_daemon_local_socket_path }}'
+    line: 'LocalSocket {{ clamav_daemon_localsocket }}'
 
 clamav_run_freshclam: yes
 
