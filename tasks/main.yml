@@ -22,6 +22,14 @@
   when: clamav_install.changed or clamav_run_freshclam
   notify: restart clamav daemon
 
+- name: Change configuration for the ClamAV daemon.
+  lineinfile:
+    path: "{{ clamav_daemon_config_path }}"
+    regexp: '{{ item.regexp }}'
+    line: "{{ item.line | default('') }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ clamav_daemon_configuration_changes }}"
+
 - name: Ensure ClamAV daemon is running (if configured).
   service:
     name: "{{ clamav_daemon }}"

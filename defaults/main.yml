@@ -1,6 +1,13 @@
 ---
-# See the OS-specific list of packages inside the vars directory.
+# See the defaults for OS-specific vars inside the vars/ directory.
 # clamav_packages: []
+# clamav_daemon_config_path: ''
+
+clamav_daemon_configuration_changes:
+  - regexp: '^.*Example$'
+    state: absent
+  - regexp: '^.*LocalSocket .*$'
+    line: 'LocalSocket {{ clamav_daemon_local_socket_path }}'
 
 clamav_run_freshclam: yes
 
