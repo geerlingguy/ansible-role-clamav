@@ -19,7 +19,7 @@ script:
   - ${PWD}/tests/test.sh
 
   # Make sure clamav is installed.
-  - 'docker exec --tty ${container_id} env TERM=xterm clamav -v'
+  - 'docker exec --tty ${container_id} env TERM=xterm clamscan -V'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
