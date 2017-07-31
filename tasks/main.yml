@@ -2,6 +2,11 @@
 - name: Include OS-Specific variables
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Define clamav_daemon.
+  set_fact:
+    clamav_daemon: "{{ __clamav_daemon }}"
+  when: clamav_daemon is not defined
+
 - name: Define clamav_packages.
   set_fact:
     clamav_packages: "{{ __clamav_packages | list }}"
@@ -10,3 +15,15 @@
 - name: Ensure ClamAV packages are installed.
   package: name={{ item }} state=present
   with_items: "{{ clamav_packages }}"
+  register: clamav_install
+
+- name: Ensure ClamAV definitions are current.
+  command: freshclam
+  when: clamav_install.changed or clamav_run_freshclam
+  notify: restart clamav daemon
+
+- name: Ensure ClamAV daemon is running (if configured).
+  service:
+    name: "{{ clamav_daemon }}"
+    state: "{{ clamav_daemon_state }}"
+    enabled: "{{ clamav_daemon_enabled }}"

@@ -1,3 +1,9 @@
 ---
 # See the OS-specific list of packages inside the vars directory.
 # clamav_packages: []
+
+clamav_run_freshclam: yes
+
+# clamav_daemon: 'clamav-daemon'
+clamav_daemon_state: started
+clamav_daemon_enabled: yes

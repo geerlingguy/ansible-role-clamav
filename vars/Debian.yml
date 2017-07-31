@@ -1,4 +1,5 @@
 ---
+__clamav_daemon: 'clamav-daemon'
 __clamav_packages:
   - clamav
   - clamav-base

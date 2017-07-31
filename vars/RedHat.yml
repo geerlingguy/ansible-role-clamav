@@ -1,4 +1,5 @@
 ---
+__clamav_daemon: 'clamd@scan'
 __clamav_packages:
   - clamav
   - clamav-update
