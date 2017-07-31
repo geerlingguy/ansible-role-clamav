@@ -1,0 +1,12 @@
+---
+- name: Include OS-Specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Define clamav_packages.
+  set_fact:
+    clamav_packages: "{{ __clamav_packages | list }}"
+  when: clamav_packages is not defined
+
+- name: Ensure ClamAV packages are installed.
+  package: name={{ item }} state=present
+  with_items: "{{ clamav_packages }}"

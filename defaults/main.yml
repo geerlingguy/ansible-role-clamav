@@ -1,0 +1,3 @@
+---
+# See the OS-specific list of packages inside the vars directory.
+# clamav_packages: []
