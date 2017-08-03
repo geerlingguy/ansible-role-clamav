@@ -2,25 +2,14 @@
 - name: Include OS-Specific variables
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Define clamav_daemon.
-  set_fact:
-    clamav_daemon: "{{ __clamav_daemon }}"
-  when: clamav_daemon is not defined
-
-- name: Define clamav_packages.
-  set_fact:
-    clamav_packages: "{{ __clamav_packages | list }}"
-  when: clamav_packages is not defined
+- include: setup-vars.yml
 
 - name: Ensure ClamAV packages are installed.
   package: name={{ item }} state=present
   with_items: "{{ clamav_packages }}"
-  register: clamav_install
 
-- name: Ensure ClamAV definitions are current.
-  command: freshclam
-  when: clamav_install.changed or clamav_run_freshclam
-  notify: restart clamav daemon
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
 
 - name: Change configuration for the ClamAV daemon.
   lineinfile:
@@ -35,3 +24,9 @@
     name: "{{ clamav_daemon }}"
     state: "{{ clamav_daemon_state }}"
     enabled: "{{ clamav_daemon_enabled }}"
+
+- name: Ensure ClamAV freshclam daemon is running (if configured).
+  service:
+    name: "{{ clamav_freshclam_daemon }}"
+    state: "{{ clamav_freshclam_daemon_state }}"
+    enabled: "{{ clamav_freshclam_daemon_enabled }}"

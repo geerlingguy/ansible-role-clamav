@@ -9,8 +9,10 @@ clamav_daemon_configuration_changes:
   - regexp: '^.*LocalSocket .*$'
     line: 'LocalSocket {{ clamav_daemon_localsocket }}'
 
-clamav_run_freshclam: yes
-
 # clamav_daemon: 'clamav-daemon'
 clamav_daemon_state: started
 clamav_daemon_enabled: yes
+
+# clamav_freshclam_daemon: 'clamav-freshclam'
+clamav_freshclam_daemon_state: started
+clamav_freshclam_daemon_enabled: yes

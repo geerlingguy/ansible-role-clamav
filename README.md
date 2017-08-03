@@ -19,10 +19,6 @@ Available variables are listed below, along with default values (see `defaults/m
 
 (Defaults for Debian/Ubuntu shown). List of packages to be installed for ClamAV operations.
 
-    clamav_run_freshclam: yes
-
-Run `freshclam` to update scanning definitions when the playbook is run. Note that this will always be run at least once after `clamav_packages` installs new packages.
-
     clamav_daemon_localsocket: /var/run/clamav/clamd.ctl
     clamav_daemon_config_path: /etc/clamav/clamd.conf
 
@@ -40,6 +36,11 @@ Changes to make to the configuration file that is read from when ClamAV starts. 
     clamav_daemon_enabled: yes
 
 Control whether the `clamav-daemon` service is running and/or enabled on system boot.
+
+    clamav_freshclam_daemon_state: started
+    clamav_freshclam_daemon_enabled: yes
+
+Control whether the `clamav-freshclam` service is running and/or enabled on system boot.
 
 ## Dependencies
 

@@ -1,0 +1,14 @@
+---
+- name: Ensure Freshclam service is available.
+  template:
+    src: clamd-freshclam.service.j2
+    dest: /lib/systemd/system/clamd-freshclam.service
+    mode: 0644
+  register: freshclam_service_template
+
+- name: Reload systemd after adding service.
+  systemd:
+    state: stopped
+    daemon_reload: yes
+    name: "{{ clamav_freshclam_daemon }}"
+  when: freshclam_service_template.changed
