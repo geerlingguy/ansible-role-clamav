@@ -7,6 +7,12 @@
 - name: Ensure ClamAV packages are installed.
   package: name={{ item }} state=present
   with_items: "{{ clamav_packages }}"
+  register: clamav_packages_install
+
+- name: Run freshclam after ClamAV packages change.
+  command: freshclam
+  when: clamav_packages_install.changed
+  notify: restart clamav daemon
 
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
