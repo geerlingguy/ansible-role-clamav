@@ -12,7 +12,12 @@
 - name: Run freshclam after ClamAV packages change.
   command: freshclam
   when: clamav_packages_install.changed
+  register: freshclam_result
   notify: restart clamav daemon
+  # On Debian, freshclam is automatically run post-install, so this may fail.
+  failed_when:
+    - freshclam_result.rc != 0
+    - freshclam_result.stderr.find('locked by another process') != -1
 
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
