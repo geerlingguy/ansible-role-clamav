@@ -6,7 +6,7 @@ galaxy_info:
   description: ClamAV installation and configuration.
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.2
+  min_ansible_version: 2.4
   platforms:
   - name: EL
     versions:
@@ -16,6 +16,7 @@ galaxy_info:
     versions:
       - trusty
       - xenial
+      - bionic
   - name: Debian
     versions:
       - jessie

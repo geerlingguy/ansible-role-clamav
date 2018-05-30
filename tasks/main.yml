@@ -2,7 +2,7 @@
 - name: Include OS-Specific variables
   include_vars: "{{ ansible_os_family }}.yml"
 
-- include: setup-vars.yml
+- include_tasks: setup-vars.yml
 
 - name: Ensure ClamAV packages are installed.
   package: name={{ item }} state=present
@@ -19,7 +19,7 @@
     - freshclam_result.rc != 0
     - freshclam_result.stderr.find('locked by another process') != -1
 
-- include: setup-RedHat.yml
+- include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
 - name: Change configuration for the ClamAV daemon.
