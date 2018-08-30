@@ -49,7 +49,7 @@ None.
 ## Example Playbook
 
     - hosts: servers
-      sudo: yes
+      become: true
       roles:
         - geerlingguy.clamav
 
