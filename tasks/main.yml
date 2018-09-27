@@ -18,6 +18,7 @@
   failed_when:
     - freshclam_result.rc != 0
     - freshclam_result.stderr.find('locked by another process') != -1
+  tags: ['skip_ansible_lint']
 
 - include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
