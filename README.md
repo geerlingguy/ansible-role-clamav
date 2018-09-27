@@ -33,12 +33,12 @@ Path configuration for ClamAV daemon. These are hardcoded specifically for each 
 Changes to make to the configuration file that is read from when ClamAV starts. You need to at least comment the 'Example' line and open a LocalSocket (or `TCPSocket`, e.g. `3310` by default) to get the ClamAV daemon to run.
 
     clamav_daemon_state: started
-    clamav_daemon_enabled: yes
+    clamav_daemon_enabled: true
 
 Control whether the `clamav-daemon` service is running and/or enabled on system boot.
 
     clamav_freshclam_daemon_state: started
-    clamav_freshclam_daemon_enabled: yes
+    clamav_freshclam_daemon_enabled: true
 
 Control whether the `clamav-freshclam` service is running and/or enabled on system boot.
 

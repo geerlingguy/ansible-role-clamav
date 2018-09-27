@@ -9,6 +9,6 @@
 - name: Reload systemd after adding service.
   systemd:
     state: stopped
-    daemon_reload: yes
+    daemon_reload: true
     name: "{{ clamav_freshclam_daemon }}"
   when: freshclam_service_template.changed
