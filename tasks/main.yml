@@ -16,7 +16,7 @@
   notify: restart clamav daemon
   # On Debian, freshclam is automatically run post-install, so this may fail.
   failed_when:
-    - freshclam_result.rc != 0
+    - freshclam_result is failed
     - freshclam_result.stderr.find('locked by another process') != -1
   tags: ['skip_ansible_lint']
 
