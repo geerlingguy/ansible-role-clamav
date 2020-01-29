@@ -2,6 +2,7 @@
 # See the defaults for OS-specific vars inside the vars/ directory.
 # clamav_packages: []
 # clamav_daemon_config_path: ''
+# clamav_freshclam_daemon_config_path: ''
 
 clamav_daemon_configuration_changes:
   - regexp: '^.*Example$'
