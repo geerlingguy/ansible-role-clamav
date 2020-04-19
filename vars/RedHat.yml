@@ -8,3 +8,4 @@ __clamav_packages:
   - clamav
   - clamav-update
   - clamav-scanner-systemd
+  - clamav-data

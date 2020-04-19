@@ -40,6 +40,11 @@
   with_items: "{{ clamav_freshclam_configuration_changes }}"
   when: clamav_freshclam_configuration_changes is defined
 
+- name: Set permissions on /var/lib/clamav
+  file: /var/lib/clamav
+  owner: clamupdate
+  group: clamupdate
+
 - name: Ensure ClamAV daemon is running (if configured).
   service:
     name: "{{ clamav_daemon }}"
