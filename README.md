@@ -1,6 +1,6 @@
 # Ansible Role: ClamAV
 
-[![Build Status](https://travis-ci.com/geerlingguy/ansible-role-clamav.svg?branch=master)](https://travis-ci.com/geerlingguy/ansible-role-clamav)
+[![CI](https://github.com/geerlingguy/ansible-role-clamav/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-clamav/actions?query=workflow%3ACI)
 
 Installs ClamAV on RedHat/CentOS and Debian/Ubuntu Linux servers.
 
