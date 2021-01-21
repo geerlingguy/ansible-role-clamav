@@ -8,6 +8,7 @@ Type = forking
 ExecStart = /usr/bin/freshclam --daemon --checks 2
 Restart = on-failure
 PrivateTmp = true
+UMask = 022
 
 [Install]
 WantedBy=multi-user.target
