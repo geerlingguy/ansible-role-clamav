@@ -4,6 +4,7 @@ clamav_daemon_config_path: /etc/clamd.d/scan.conf
 __clamav_daemon: 'clamd@scan'
 __clamav_freshclam_daemon: 'clamd-freshclam'
 __clamav_packages:
+  - epel-release
   - clamav
   - clamav-update
   - clamav-scanner-systemd
