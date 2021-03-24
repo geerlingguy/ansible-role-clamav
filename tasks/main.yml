@@ -10,7 +10,7 @@
   register: clamav_packages_install
 
 - name: Run freshclam after ClamAV packages change.
-  command: freshclam
+  shell: umask 022 && freshclam
   when: clamav_packages_install.changed
   register: freshclam_result
   notify: restart clamav daemon
