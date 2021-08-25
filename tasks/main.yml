@@ -31,6 +31,7 @@
     state: "{{ item.state | default('present') }}"
     mode: 0644
   with_items: "{{ clamav_daemon_configuration_changes }}"
+  notify: restart clamav daemon
 
 - name: Ensure ClamAV daemon is running (if configured).
   service:
