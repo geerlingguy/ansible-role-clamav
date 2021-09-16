@@ -32,6 +32,14 @@
     mode: 0644
   with_items: "{{ clamav_daemon_configuration_changes }}"
 
+- name: Create ClamAV socket directory in advance
+  file:
+    dest: /var/run/clamd.scan/
+    state: directory
+    user: clamscan
+    group: virusgroup
+    mode: 0722
+
 - name: Ensure ClamAV daemon is running (if configured).
   service:
     name: "{{ clamav_daemon }}"
