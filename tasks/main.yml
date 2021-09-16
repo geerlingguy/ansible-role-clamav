@@ -36,7 +36,7 @@
   file:
     dest: /var/run/clamd.scan/
     state: directory
-    user: clamscan
+    owner: clamscan
     group: virusgroup
     mode: 0722
 
