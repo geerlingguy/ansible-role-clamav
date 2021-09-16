@@ -39,6 +39,7 @@
     owner: clamscan
     group: virusgroup
     mode: 0722
+  when: ansible_os_family == 'RedHat'
 
 - name: Ensure ClamAV daemon is running (if configured).
   service:
