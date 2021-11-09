@@ -38,9 +38,11 @@
     name: "{{ clamav_daemon }}"
     state: "{{ clamav_daemon_state }}"
     enabled: "{{ clamav_daemon_enabled }}"
+  when: not ansible_check_mode
 
 - name: Ensure ClamAV freshclam daemon is running (if configured).
   service:
     name: "{{ clamav_freshclam_daemon }}"
     state: "{{ clamav_freshclam_daemon_state }}"
     enabled: "{{ clamav_freshclam_daemon_enabled }}"
+  when: not ansible_check_mode
