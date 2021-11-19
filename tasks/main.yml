@@ -5,8 +5,7 @@
 - include_tasks: setup-vars.yml
 
 - name: Ensure ClamAV packages are installed.
-  package: name={{ item }} state=present
-  with_items: "{{ clamav_packages }}"
+  package: name={{ clamav_packages }} state=present
   register: clamav_packages_install
 
 - name: Run freshclam after ClamAV packages change.
