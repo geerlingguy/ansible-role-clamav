@@ -1,6 +1,7 @@
 ---
 clamav_daemon_localsocket: /var/run/clamav/clamd.ctl
 clamav_daemon_config_path: /etc/clamav/clamd.conf
+clamav_freshclam_daemon_config_path: /etc/freshclam.conf
 __clamav_daemon: 'clamav-daemon'
 __clamav_freshclam_daemon: 'clamav-freshclam'
 __clamav_packages:
