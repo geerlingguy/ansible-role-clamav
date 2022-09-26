@@ -33,6 +33,21 @@
     create: yes
   with_items: "{{ clamav_daemon_configuration_changes }}"
 
+- name: Change configuration for the freshclam daemon.
+  lineinfile:
+    path: "{{ clamav_freshclam_daemon_config_path }}"
+    regexp: '{{ item.regexp }}'
+    line: "{{ item.line | default('') }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ clamav_freshclam_configuration_changes }}"
+  when: clamav_freshclam_configuration_changes is defined
+
+- name: Set permissions on /var/lib/clamav
+  file:
+    path: /var/lib/clamav
+    owner: clamupdate
+    group: clamupdate
+
 - name: Ensure ClamAV daemon is running (if configured).
   service:
     name: "{{ clamav_daemon }}"
