@@ -21,6 +21,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
     clamav_daemon_localsocket: /var/run/clamav/clamd.ctl
     clamav_daemon_config_path: /etc/clamav/clamd.conf
+    clamav_freshclam_daemon_config_path: /etc/freshclam.conf
 
 Path configuration for ClamAV daemon. These are hardcoded specifically for each OS family (Debian and Red Hat) and cannot be overidden.
 
@@ -36,6 +37,14 @@ Changes to make to the configuration file that is read from when ClamAV starts. 
     clamav_daemon_enabled: true
 
 Control whether the `clamav-daemon` service is running and/or enabled on system boot.
+
+    clamav_freshclam_configuration_changes:
+      - regexp: '^.*HTTPProxyServer .*$'
+        line: 'HTTPProxyServer {{ clamav_freshclam_http_proxy_server }}'
+      - regexp: '^.*HTTPProxyPort .*$'
+        line: 'HTTPProxyPort {{ clamav_freshclam_http_proxy_port }}'
+
+Changes to make to the configuration file that is read from when freshclam starts. You will need to add your HTTP Proxy server configuration here, if you have one.
 
     clamav_freshclam_daemon_state: started
     clamav_freshclam_daemon_enabled: true
