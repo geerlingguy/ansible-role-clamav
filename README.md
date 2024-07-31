@@ -21,7 +21,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
     clamav_daemon_localsocket: /var/run/clamav/clamd.ctl
     clamav_daemon_config_path: /etc/clamav/clamd.conf
-    clamav_freshclam_daemon_config_path: /etc/freshclam.conf
+    clamav_freshclam_daemon_config_path: /etc/clamav/freshclam.conf
 
 Path configuration for ClamAV daemon. These are hardcoded specifically for each OS family (Debian and Red Hat) and cannot be overidden.
 
