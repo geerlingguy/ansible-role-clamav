@@ -9,17 +9,6 @@
   with_items: "{{ clamav_packages }}"
   register: clamav_packages_install
 
-- name: Run freshclam after ClamAV packages change.
-  command: freshclam
-  when: clamav_packages_install.changed
-  register: freshclam_result
-  notify: restart clamav daemon
-  # On Debian, freshclam is automatically run post-install, so this may fail.
-  failed_when:
-    - freshclam_result is failed
-    - freshclam_result.stderr.find('locked by another process') != -1
-  tags: ["skip_ansible_lint"]
-
 - include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
@@ -42,6 +31,17 @@
     state: "{{ item.state | default('present') }}"
   with_items: "{{ clamav_freshclam_configuration_changes }}"
   when: clamav_freshclam_configuration_changes is defined
+
+- name: Run freshclam after ClamAV packages change.
+  command: freshclam
+  when: clamav_packages_install.changed
+  register: freshclam_result
+  notify: restart clamav daemon
+  # On Debian, freshclam is automatically run post-install, so this may fail.
+  failed_when:
+    - freshclam_result is failed
+    - freshclam_result.stderr.find('locked by another process') != -1
+  tags: ["skip_ansible_lint"]
 
 - name: Ensure ClamAV daemon is running (if configured).
   service:
