@@ -1,6 +1,6 @@
 # Ansible Role: ClamAV
 
-[![CI](https://github.com/geerlingguy/ansible-role-clamav/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-clamav/actions?query=workflow%3ACI)
+[![CI](https://github.com/geerlingguy/ansible-role-clamav/actions/workflows/ci.yml/badge.svg)](https://github.com/geerlingguy/ansible-role-clamav/actions/workflows/ci.yml)
 
 Installs ClamAV on RedHat/CentOS and Debian/Ubuntu Linux servers.
 
